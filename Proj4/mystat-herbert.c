@@ -3,6 +3,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <errno.h>
+#include "pperm.h"
 
 int main(int argc, char** argv){
    
@@ -18,70 +19,12 @@ int main(int argc, char** argv){
       return 1;
    }
    
-   printf("Filesize: %ld\n", data_block.st_size);
-   printf("Block count: %ld\n", data_block.st_blocks);
-   printf("Hard Links: %ld\n", data_block.st_nlink);
-
-
-   printf("File Permissions: ");
-   if (data_block.st_mode & S_IFDIR)
-      printf("d");
-   else
-      printf("-");
-
-   if (data_block.st_mode & S_IRWXU)
-      printf("rwx");
-   else {
-      if (data_block.st_mode & S_IRUSR)
-         printf("r");
-      else 
-         printf("-");
-      if (data_block.st_mode & S_IWUSR) 
-         printf("w");
-      else
-         printf("-");
-      if (data_block.st_mode & S_IXUSR) 
-         printf("x");
-      else
-         printf("-");
-   }
-
-   if (data_block.st_mode & S_IRWXG)
-      printf("rwx");
-   else {
-      if (data_block.st_mode & S_IRGRP)
-         printf("r");
-      else 
-         printf("-");
-      if (data_block.st_mode & S_IWGRP) 
-         printf("w");
-      else
-         printf("-");
-      if (data_block.st_mode & S_IXGRP) 
-         printf("x");
-      else
-         printf("-");
-   }
-
-   if (data_block.st_mode & S_IRWXO)
-      printf("rwx\n");
-   else {
-      if (data_block.st_mode & S_IROTH)
-         printf("r");
-      else 
-         printf("-");
-      if (data_block.st_mode & S_IWOTH) 
-         printf("w");
-      else
-         printf("-");
-      if (data_block.st_mode & S_IXOTH) 
-         printf("x\n");
-      else
-         printf("-\n");
-   }
-
-
-   printf("Inode Number: %ld\n", data_block.st_ino);
+   printf("  File: '%s'\n", argv[1]);
+   printf("  Size: %ld\t\t", data_block.st_size);
+   printf("Blocks: %ld\n", data_block.st_blocks);
+   printf("\t\t\tInode Number: %ld\t", data_block.st_ino);
+   printf("Links: %ld\n", data_block.st_nlink);
+   print_permissions(data_block.st_mode);
    
    
    return 0;
