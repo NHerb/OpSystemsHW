@@ -24,7 +24,9 @@ int main(int argc, char** argv){
    printf("Blocks: %ld\n", data_block.st_blocks);
    printf("\t\t\tInode Number: %ld\t", data_block.st_ino);
    printf("Links: %ld\n", data_block.st_nlink);
+   printf("File Permissions: ");
    print_permissions(data_block.st_mode);
+   printf("\n");
    
    
    return 0;

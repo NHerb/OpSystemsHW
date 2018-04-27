@@ -1,5 +1,4 @@
 void print_permissions(int mode){
-   printf("File Permissions: ");
       
    // print filetype
    if (mode & S_IFDIR)
@@ -55,6 +54,5 @@ void print_permissions(int mode){
          printf("w");
       else
          printf("-");
-      printf("\n");
 //   }
 }
