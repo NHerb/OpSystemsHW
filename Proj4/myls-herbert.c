@@ -22,9 +22,11 @@ int main(int argc, char** argv){
 
 
    if (argc > 3){
-      printf("Invalid input.\n");
+      printf("Usage: myls [options] [file].\n");
       return 1;
    }
+
+   // options and filename can be in any order, just scan for matches
    for (i = 1; i < argc; i++){
       if (strcmp(argv[i],"-l") == 0)
          long_mode = 1;
@@ -43,14 +45,14 @@ int main(int argc, char** argv){
       return 1;
    }
 
-
+   // Read through every entry in the directory & list off appropriate data given user-desired mode
    while (1){
       dir_data = readdir(directory);
       if (dir_data == NULL)
          break;
       if (long_mode){
          int result = 0;
-         if (!use_cwd){    // EDIT THIS TO HANDLE ABSOLUTE PATHNAMES AS ANNOUNCED
+         if (!use_cwd){
             char temp_name[MAX_NAME_LENGTH+1];
             sprintf(temp_name, "%s/%s", dir_name, dir_data->d_name);
             result = stat(temp_name, &file_data);
