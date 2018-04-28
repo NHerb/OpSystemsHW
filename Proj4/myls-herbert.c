@@ -3,7 +3,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/stat.h>
-#include "pperm.h"
+#include "printpermissions.h"
 #include <grp.h>
 #include <pwd.h>
 #include <string.h>
@@ -50,7 +50,7 @@ int main(int argc, char** argv){
          break;
       if (long_mode){
          int result = 0;
-         if (!use_cwd){
+         if (!use_cwd){    // EDIT THIS TO HANDLE ABSOLUTE PATHNAMES AS ANNOUNCED
             char temp_name[MAX_NAME_LENGTH+1];
             sprintf(temp_name, "%s/%s", dir_name, dir_data->d_name);
             result = stat(temp_name, &file_data);

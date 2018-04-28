@@ -3,14 +3,14 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <errno.h>
-#include "pperm.h"
+#include "printpermissions.h"
 
 int main(int argc, char** argv){
    
    struct stat data_block;
    
    if (argc != 2){
-      printf("Invalid Input.\n");
+      printf("Usage: mystat file.\n");
       return 1;
    }
    
