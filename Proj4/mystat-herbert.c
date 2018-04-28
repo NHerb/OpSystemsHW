@@ -21,7 +21,8 @@ int main(int argc, char** argv){
    
    printf("  File: '%s'\n", argv[1]);
    printf("  Size: %ld\t\t", data_block.st_size);
-   printf("Blocks: %ld\n", data_block.st_blocks);
+   printf("Blocks: %ld\t\t", data_block.st_blocks);
+   printf("IO Size: %ld\n", data_block.st_blksize);
    printf("\t\t\tInode Number: %ld\t", data_block.st_ino);
    printf("Links: %ld\n", data_block.st_nlink);
    printf("File Permissions: ");
